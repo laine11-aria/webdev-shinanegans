@@ -10,7 +10,8 @@ const { createElement } = require("react");
 
 const form = document.querySelector("#form-task");
 const input = document.querySelector("task-inut");
-const list = document.querySelector("tasks-list");
+const list = document.qu
+erySelector("tasks-list");
 
 let tasks = [];
 
@@ -29,31 +30,40 @@ function addTask(text) {
     }
     tasks.push(task);
     saveTasks();
-    //renderTasks();
+    renderTasks();
 }
 
 function renderTasks() {
     list.innerHTML = ""
 
     tasks.forEach((task) => {
-        const text = document.createElement
-        ('span')
+        const li = document.createElement("li")
+        const text = document.createElement('span')
         text.textContent = task.text
         if (task.done) {
             text.style.textDecoration =
             "line-through"
         }
 
-        const doneBtn = document.createElement
-        ('button')
-        
+        const doneBtn = document.createElement('button')
+        doneBtn.textContent = task.done ? "Undo" : "Done"
+        doneBtn.addEventListener("click", () => {
+            deleteTask(task.id)
+        })        
 
+        const deleteBtn = document.createElement('button')
+        deleteBtn.textContent = "Delete"
+        deleteBtn.addEventListener("click", () => {
+            deleteTask(task.id)
+        })     
 
-    })
+        li.appendChild(text)
+        li.appendChild(doneBtn)
+        li.appendChild(deleteBtn)
+        list.appendChild(li)
+})
 }
 
 
 
 
-
-//hindi pa tapos
