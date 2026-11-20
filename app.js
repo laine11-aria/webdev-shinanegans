@@ -62,8 +62,25 @@ function renderTasks() {
         li.appendChild(deleteBtn)
         list.appendChild(li)
 })
+
+
+function toggleTask(id) {
+    const task = tasks.find(t => t.id === id)
+    if (!task) return
+    task.done = !task.done 
+    saveTasks()
+    renderTasks()
+}
+
+function deleteTask(id) {
+    tasks = tasks.filter(task => task.id !== id)
 }
 
 
+
+}
+
+
+//hindi pa tapos
 
 
